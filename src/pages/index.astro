@@ -1,7 +1,11 @@
 ---
-import { API_BASE_URL } from "@/lib/constantes";
-import { getDatosBasicos } from "@/lib/queries";
+
+import type { Producto } from "@/interfaces/dakini";
+import { getDatosBasicos, getListaProductos } from "@/lib/queries";
 const { settings } = await getDatosBasicos();
+const { productos} = await getListaProductos();
+const prod: Producto[] = productos.productos ;
+console.log  ( prod.length)
 
 
 ---
@@ -17,5 +21,16 @@ const { settings } = await getDatosBasicos();
 	<body>
 		<h1>{settings?.title}</h1>
 		<p>{settings?.describe}</p>
+{
+	prod.map(({title, categoria, content}) => (
+		<div>
+			<h2>{title}</h2>
+			<span> {categoria?.tipo} </span>
+			
+		</div>
+	))
+}
+		
+		
 	</body>
 </html>
