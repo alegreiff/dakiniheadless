@@ -1,4 +1,8 @@
 ---
+import { API_BASE_URL } from "@/lib/constantes";
+import { getDatosBasicos } from "@/lib/queries";
+const { settings } = await getDatosBasicos();
+
 
 ---
 
@@ -11,6 +15,7 @@
 		<title>Astro</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<h1>{settings?.title}</h1>
+		<p>{settings?.describe}</p>
 	</body>
 </html>
